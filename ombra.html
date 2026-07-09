@@ -68,11 +68,12 @@
 <body class="bg-[#0b0c0c] text-white min-h-screen">
 
     <!-- HEADER -->
-    <header class="flex justify-between items-center px-10 py-6 border-b border-gray-800">
+        <header class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-gray-800 relative z-50 bg-[#0b0c0c]">
         <div class="flex items-center gap-3">
-            <img src="images/shared/Logo.svg" alt="Valnera Motors" class="h-16 w-auto object-contain">
+            <img src="images/shared/Logo.svg" alt="Valnera Motors" class="h-12 md:h-16 w-auto object-contain">
         </div>
         
+        <!-- Desktop Nav -->
         <nav class="hidden md:flex gap-8 text-sm font-light">
             <a href="index.html" class="hover:text-[#d4af37] transition duration-300">Home</a>
             <a href="volaris.html" class="hover:text-[#d4af37] transition duration-300">Volaris</a>
@@ -81,10 +82,36 @@
             <a href="gallery.html" class="hover:text-[#d4af37] transition duration-300">Gallery</a>
         </nav>
 
-        <button class="border border-[#2dd4bf] text-[#2dd4bf] px-6 py-2 rounded-sm text-sm hover:bg-[#2dd4bf] hover:text-black transition duration-300">
+        <div class="hidden md:block">
+            <button class="border border-[#2dd4bf] text-[#2dd4bf] px-6 py-2 rounded-sm text-sm hover:bg-[#2dd4bf] hover:text-black transition duration-300">
             Inquire Now
         </button>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none z-50">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#0b0c0c] z-40 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col items-center justify-center pt-20">
+        <nav class="flex flex-col gap-8 text-xl font-light text-center">
+            <a href="index.html" class="hover:text-[#d4af37] transition duration-300">Home</a>
+            <a href="volaris.html" class="hover:text-[#d4af37] transition duration-300">Volaris</a>
+            <a href="ombra.html" class="text-[#d4af37] transition duration-300">Ombra</a>
+            <a href="team.html" class="hover:text-[#d4af37] transition duration-300">The Team</a>
+            <a href="gallery.html" class="hover:text-[#d4af37] transition duration-300">Gallery</a>
+        </nav>
+        <div class="mt-12">
+            <button class="border border-[#2dd4bf] text-[#2dd4bf] px-6 py-2 rounded-sm text-sm hover:bg-[#2dd4bf] hover:text-black transition duration-300">
+            Inquire Now
+        </button>
+        </div>
+    </div>
 
     <!-- HERO SECTION -->
     <section class="relative px-10 py-32 flex flex-col md:flex-row items-center justify-between overflow-hidden bg-cover bg-center border-b border-gray-800" style="background-image: url('images/ombra/Mappa 3.svg');">
@@ -228,5 +255,29 @@
         </div>
     </footer>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger-icon');
+            const close = document.getElementById('close-icon');
+
+            if (btn && menu) {
+                btn.addEventListener('click', function() {
+                    const isOpen = !menu.classList.contains('translate-x-full');
+                    if (isOpen) {
+                        menu.classList.add('translate-x-full');
+                        hamburger.classList.remove('hidden');
+                        close.classList.add('hidden');
+                    } else {
+                        menu.classList.remove('translate-x-full');
+                        hamburger.classList.add('hidden');
+                        close.classList.remove('hidden');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
